@@ -7,6 +7,7 @@ import PageProductImport from "~/components/pages/admin/PageProductImport/PagePr
 import PageCart from "~/components/pages/PageCart/PageCart";
 import PageProducts from "~/components/pages/PageProducts/PageProducts";
 import { Typography } from "@mui/material";
+import PageProduct from "~/components/pages/PageProduct/PageProduct";
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
         <Route path="admin/product-form">
           <Route index element={<PageProductForm />} />
           <Route path=":id" element={<PageProductForm />} />
+        </Route>
+        <Route path="products" element={<PageProduct />}>
+          <Route index element={<PageProduct />} />
+          <Route path=":id" element={<PageProduct />} />
         </Route>
         <Route
           path="*"

@@ -1,0 +1,47 @@
+name: Deploy React App with AWS CDK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and Deploy to AWS
+    runs-on: ubuntu-latest
+
+    steps:
+      # Steps 1: Checkout the code repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js for React build and AWS CDK
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Step 3: Install dependencies for your React app and CDK project
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Build the React App
+      - name: Build React App
+        run: npm run build
+
+      # Step 5: Configure AWS Credentials
+      - name: Set up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # Step 6: Install AWS CDK globally
+      - name: Install AWS CDK
+        run: npm install -g aws-cdk
+
+      # Step 7: Deploy the CDK stack
+      - name: Deploy CDK App
+        run: cdk deploy --require-approval never
