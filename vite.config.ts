@@ -13,6 +13,12 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  build: {
+    // Customize the build output directory (e.g., 'dist' becomes 'build')
+    outDir: path.resolve(__dirname, "infra/resources/build"),
+    // Optionally specify other build options
+    assetsDir: "assets", // To customize assets directory
+  },
   test: {
     globals: true,
     environment: "jsdom",
