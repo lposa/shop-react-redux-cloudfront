@@ -24,3 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Remove later if needed
+.github/workflows/deploy.yml
