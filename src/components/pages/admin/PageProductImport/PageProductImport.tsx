@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 
 export default function PageProductImport() {
+  localStorage.setItem("authorization_token", "TFBPU0E6dGVzdDEyMzQ=");
+
   return (
     <Box py={3}>
       <Box mb={2} display="flex" justifyContent="space-between">

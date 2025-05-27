@@ -8,21 +8,36 @@ import PageCart from "~/components/pages/PageCart/PageCart";
 import PageProducts from "~/components/pages/PageProducts/PageProducts";
 import { Typography } from "@mui/material";
 import PageProduct from "~/components/pages/PageProduct/PageProduct";
+import { LoginPage } from "~/components/pages/Login/LoginPage";
+import ProtectedRoute from "~/components/pages/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
     <MainLayout>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<PageProducts />} />
         <Route path="cart" element={<PageCart />} />
         <Route path="admin/orders">
-          <Route index element={<PageOrders />} />
-          <Route path=":id" element={<PageOrder />} />
+          <Route index element={<ProtectedRoute element={<PageOrders />} />} />
+          <Route
+            path=":id"
+            element={<ProtectedRoute element={<PageOrder />} />}
+          />
         </Route>
-        <Route path="admin/products" element={<PageProductImport />} />
+        <Route
+          path="admin/products"
+          element={<ProtectedRoute element={<PageProductImport />} />}
+        />
         <Route path="admin/product-form">
-          <Route index element={<PageProductForm />} />
-          <Route path=":id" element={<PageProductForm />} />
+          <Route
+            index
+            element={<ProtectedRoute element={<PageProductForm />} />}
+          />
+          <Route
+            path=":id"
+            element={<ProtectedRoute element={<PageProductForm />} />}
+          />
         </Route>
         <Route path="products" element={<PageProduct />}>
           <Route index element={<PageProduct />} />
